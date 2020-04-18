@@ -1,0 +1,19 @@
+@mixin customize-scroll($width: 6px, $color: #ccc, $background: transparent) {
+    &::-webkit-scrollbar-track {
+        border-radius: $width;
+    }
+
+    &::-webkit-scrollbar {
+        width: $width;
+        background: $background;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: $width;
+        background: $color;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+        background: $color;
+    }
+}
