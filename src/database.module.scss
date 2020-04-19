@@ -3,6 +3,7 @@
 .database__wrapper {
     height: 100%;
 }
+
 .database__list {
     height: 60vh;
     margin-top: 20px;
@@ -19,6 +20,12 @@
     display: flex;
 }
 
+.database__title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .database__input {
     display: flex;
     width: 60%;
@@ -30,6 +37,11 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
     outline: none;
+}
+
+.database__name {
+    display: flex;
+    margin-right: auto;
 }
 
 .database__button {

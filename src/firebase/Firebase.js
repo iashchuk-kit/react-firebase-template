@@ -14,14 +14,31 @@ const config = {
 class Firebase {
     constructor() {
         app.initializeApp(config);
-        this.database = app.database();
-        this.firestore = app.firestore();
     }
 
-    getWords = () => this.database.ref("words").once("value");
-    addWord = () => this.database.ref("words").push();
-    removeWord = (id) => this.database.ref(`words/${id}`).remove();
-    updateWord = (id, name) => this.database.ref(`words/${id}`).update({ name });
+    database = {
+        getWords: () => app.database().ref("words").once("value"),
+        addWord: () => app.database().ref("words").push(),
+        removeWord: (id) => app.database().ref(`words/${id}`).remove(),
+        updateWord: (id, name) => app.database().ref(`words/${id}`).update({ name }),
+    };
+
+    firestore = {
+        getWords: async () => {
+            const snapshot = await app.firestore().collection("words").get();
+            return snapshot.docs.map((doc) => doc.data());
+        },
+        addWord: async (word) => {
+            const doc = app.firestore().collection("words").doc();
+            const newWord = {
+                id: doc.id,
+                name: word.trim(),
+            };
+            await doc.set(newWord, { merge: true });
+            return newWord;
+        },
+        removeWord: (id) => app.firestore().collection("words").doc(id).delete(),
+    };
 }
 
 export default Firebase;

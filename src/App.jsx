@@ -1,7 +1,9 @@
 import React from "react";
 
-import styles from "./app.module.scss";
 import RealtimeDatabase from "./RealtimeDatabase";
+import CloudFirestore from "./CloudFirestore";
+
+import styles from "./app.module.scss";
 
 const App = () => {
     return (
@@ -12,7 +14,7 @@ const App = () => {
                     <RealtimeDatabase />
                 </div>
                 <div className={styles.app__block}>
-                    <h2>Realtime Firebase</h2>
+                    <CloudFirestore />
                 </div>
             </div>
         </div>

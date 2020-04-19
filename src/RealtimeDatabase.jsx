@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import cx from "classnames";
-import { useFirebase } from "./firebase/useFirebase";
 
+import { useFirebase } from "./firebase/FirebaseContext";
 import styles from "./database.module.scss";
 
 const initialEditState = {
@@ -22,7 +22,8 @@ const RealtimeDatabase = () => {
         });
     }, [database]);
 
-    const handleAddWord = () => {
+    const handleAddWord = (evt) => {
+        evt.preventDefault();
         const save = database.addWord();
         const newWord = {
             id: save.key,
@@ -67,7 +68,7 @@ const RealtimeDatabase = () => {
 
     return (
         <div className={styles.database}>
-            <h2>Realtime Database</h2>
+            <h2 className={styles.database__title}>Realtime Database</h2>
             <form className={styles.database__form}>
                 <input
                     className={styles.database__input}
