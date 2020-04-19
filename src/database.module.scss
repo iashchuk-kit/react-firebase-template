@@ -1,47 +1,9 @@
 @import "./scroll.scss";
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-.app {
-    background-color: #282c34;
-    width: 100vw;
-    min-height: 100vh;
-    max-height: 100vh;
-    padding: 0 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.app__container {
-    display: flex;
-    width: 100%;
-}
-
-.app__block {
-    width: 50%;
-    padding: 10px;
-}
-
-.app__wrapper {
+.database__wrapper {
     height: 100%;
 }
-.app__list {
+.database__list {
     height: 60vh;
     margin-top: 20px;
 
@@ -53,8 +15,14 @@ code {
     @include customize-scroll();
 }
 
-.app__input {
+.database__form {
+    display: flex;
+}
+
+.database__input {
+    display: flex;
     width: 60%;
+    flex-grow: 1;
     height: 44px;
     padding: 10px;
     border-top-left-radius: 4px;
@@ -64,7 +32,7 @@ code {
     outline: none;
 }
 
-.app__button {
+.database__button {
     width: 120px;
     height: 44px;
     border: 1px solid #ccc;
@@ -82,13 +50,14 @@ code {
     }
 }
 
-.app__item {
+.database__item {
     display: flex;
     align-items: center;
 }
 
-.app__text {
+.database__text {
     display: flex;
+    flex-grow: 1;
     width: 60%;
     margin-right: 10px;
     padding: 5px 10px;
@@ -96,15 +65,16 @@ code {
     border: 0;
     background-color: transparent;
     color: inherit;
+    text-overflow: ellipsis;
 }
 
-.app__text_edit {
+.database__text_edit {
     background-color: aliceblue;
     color: black;
     border-radius: 10px;
 }
 
-.app__toggle {
+.database__toggle {
     display: flex;
     justify-content: center;
     flex-shrink: 0;
