@@ -16,20 +16,12 @@ const RealtimeDatabase = () => {
     const { database } = useFirebase();
 
     useEffect(() => {
-        database.getWords().then((snapshot) => {
-            const data = snapshot.val() || [];
-            setWords(Object.values(data));
-        });
+        database.getWords().then(setWords);
     }, [database]);
 
     const handleAddWord = (evt) => {
         evt.preventDefault();
-        const save = database.addWord();
-        const newWord = {
-            id: save.key,
-            name: word.trim(),
-        };
-        save.set(newWord).then(() => setWords([...words, newWord]));
+        database.addWord(word).then((newWord) => setWords([...words, newWord]));
         setWord("");
     };
 

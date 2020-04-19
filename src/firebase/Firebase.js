@@ -17,10 +17,21 @@ class Firebase {
     }
 
     database = {
-        getWords: () => app.database().ref("words").once("value"),
-        addWord: () => app.database().ref("words").push(),
+        getWords: async () => {
+            const data = await app.database().ref("words").once("value");
+            return data ? Object.values(data.val()) : [];
+        },
+        addWord: async (word) => {
+            const push = app.database().ref("words").push();
+            const newWord = {
+                id: push.key,
+                name: word.trim(),
+            };
+            await push.set(newWord);
+            return newWord;
+        },
         removeWord: (id) => app.database().ref(`words/${id}`).remove(),
-        updateWord: (id, name) => app.database().ref(`words/${id}`).update({ name }),
+        updateWord: ({ id, name }) => app.database().ref(`words/${id}`).update({ name }),
     };
 
     firestore = {
