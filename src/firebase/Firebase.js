@@ -21,6 +21,7 @@ class Firebase {
     getWords = () => this.database.ref("words").once("value");
     addWord = () => this.database.ref("words").push();
     removeWord = (id) => this.database.ref(`words/${id}`).remove();
+    updateWord = (id, name) => this.database.ref(`words/${id}`).update({ name });
 }
 
 export default Firebase;
